@@ -1,0 +1,7 @@
+--- # apt install ansible -y
+-
+  name: "Infrastructure Setup for security-team-server"
+  hosts: localhost
+  become: yes
+
+...
