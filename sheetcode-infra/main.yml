@@ -3,5 +3,11 @@
   name: "Infrastructure Setup for security-team-server"
   hosts: localhost
   become: yes
+  tasks:
+    - name: "Install Dependencies"
+      include: plays/dep.yml
+
+    - name: "Configure Services"
+      include: plays/conf.yml
 
 ...

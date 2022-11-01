@@ -1,0 +1,63 @@
+---
+- name: "Install Nginx"
+  apt:
+    name: nginx
+    state: latest
+  tags:
+    - nginx
+
+ - name: "Install python3"
+  apt:
+    name: python3
+    state: latest
+  tags:
+    - python
+
+- name: "Install python3-pip"
+  apt:
+    name: python3-pip
+    state: latest
+  tags:
+    - pip
+
+- name: "Install certbot"
+  apt:
+    name: certbot
+    state: latest
+  tags:
+    - certbot
+  
+- name: "Install python3-certbot-nginx"
+  apt:
+    name: python3-certbot-nginx
+    state: latest
+  tags:
+    - certbot
+    - nginx
+
+- name: "Install Go 1.19.2 from Source"
+  block:
+    - name: "Get Go Source"
+      get_url:
+        url: "https://go.dev/dl/go1.19.2.linux-amd64.tar.gz"
+        dest: /tmp/go1.19.2.tar.gz
+        checksum: sha256:5e8c5a74fe6470dd7e055a461acda8bb4050ead8c2df70f227e3ff7d8eb7eeb6
+
+    - name: "Remove old Go if it exists"
+      file:
+        path: /usr/local/go
+        state: absent
+        recuse: yes
+
+    - name: "Extract go to dest"
+      unarchive:
+        src: /tmp/go1.19.2.tar.gz
+        dest: /usr/local
+
+    - name: "Add Go to PATH (System Wide)"
+      lineinfile:
+        path: 
+        line: yes
+  tags:
+    - go
+...
