@@ -12,6 +12,20 @@
 .
 
 ```
+## Chacha Enc
+```
+$ echo 'bruh' | openssl.exe enc -k 'bruh on bruh' -nosalt -chacha20 2>/dev/null 
+▒▒z@
+$ echo 'bruh' | openssl.exe enc -k 'bruh on bruh' -nosalt -chacha20 2>/dev/null | cat -v
+M--M-iM-^Rz@
+
+$ openssl.exe enc -k 'bruh on bruh' -nosalt -chacha20 -in chacha-enc 2>/dev/null | cat -v
+bruh
+
+$ openssl.exe enc -k 'bruh on bruh' -nosalt -chacha20 -in chacha-enc 2>/dev/null | cat -v
+
+
+```
 
 ## :warning: Disclaimer
 
